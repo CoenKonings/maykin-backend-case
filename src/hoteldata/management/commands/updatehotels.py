@@ -3,6 +3,7 @@ import os
 import requests
 from django.core.management.base import BaseCommand
 from dotenv import load_dotenv
+from requests.auth import HTTPBasicAuth
 
 
 class Command(BaseCommand):
@@ -15,7 +16,7 @@ class Command(BaseCommand):
         cities_url = os.environ["HOTELDATA_CITIES_URL"]
         hotels_url = os.environ["HOTELDATA_HOTELS_URL"]
 
-        basic_auth = requests.auth.HTTPBasicAuth(username, password)
+        basic_auth = HTTPBasicAuth(username, password)
 
         self.stdout.write("Getting cities...")
         cities_result = requests.get(cities_url, auth=basic_auth)
