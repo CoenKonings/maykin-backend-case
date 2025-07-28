@@ -1,0 +1,12 @@
+{% extends "hoteldata/base.html" %}
+
+{% block content %}
+<section class="hotel-list">
+    {% for hotel in hotel_list %}
+    <article class="hotel-info">
+        <h2 class="hotel-name">{{ hotel.name }}</h2>
+        <div class="hotel-location">In: {{ hotel.city.name }}</div>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}
