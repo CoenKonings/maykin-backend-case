@@ -12,5 +12,5 @@ class Command(BaseCommand):
         and cities. Add to or update the database accordingly.
         """
         self.stdout.write("Importing hotels and cities...")
-        import_hotels_cities()
+        import_hotels_cities(stdout=self.stdout)
         self.stdout.write(self.style.SUCCESS("Successfully imported data."))
