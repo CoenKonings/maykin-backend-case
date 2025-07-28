@@ -7,6 +7,8 @@
         <h2 class="hotel-name">{{ hotel.name }}</h2>
         <div class="hotel-location">In: {{ hotel.city.name }}</div>
     </article>
+    {% empty %}
+    <span class="italics">No hotels found</span>
     {% endfor %}
 </section>
 {% endblock %}
