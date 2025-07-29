@@ -1,8 +1,7 @@
 from django.urls import path
 
-from .views import CityHotelListView, HotelListView
+from .views import HotelListView
 
 urlpatterns = [
-    path("", HotelListView.as_view()),
-    path("<str:city>/", CityHotelListView.as_view()),
+    path("", HotelListView.as_view(), name="hotel_list"),
 ]

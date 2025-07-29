@@ -1,6 +1,15 @@
 {% extends "hoteldata/base.html" %}
 
 {% block content %}
+<div class="hotel-filter-section">
+    <form action="#" method="get">
+        {{ city_form }}
+        <input type="submit" value="Submit">
+    </form>
+    <a href="{% url "hotel_list" %}">Remove filters</a>
+</div>
+
+
 <section class="hotel-list">
     {% for hotel in hotel_list %}
     <article class="hotel-info">
