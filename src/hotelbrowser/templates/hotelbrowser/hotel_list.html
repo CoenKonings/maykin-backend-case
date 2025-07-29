@@ -10,20 +10,23 @@
     <div class="hotel-filter-section">
         <h2 class="sidebar-title">Filters</h2>
         <noscript>
-        <form action="{% url "hotel_list" %}" method="get" id="hotel-filter-form">
+            <form action="{% url "hotel_list" %}" method="get" id="hotel-filter-form">
                 {{ city_form }}
                 <input type="submit" value="apply">
             </form>
+
+            <a href="{% url "hotel_list" %}">Remove filters</a>
         </noscript>
 
         <form action="{% url "hotel_list" %}" class="hotel-filter-form js-only">
             <div>
-                <label for="city-name-text-input">City: <span class="small">(separate cities by commas)</span></label>
-                <input type="text" name="city" id="city-name-text-input">
+                <label for="city-name-text-input">
+                    City: <span class="small">(separate cities by commas)</span>
+                </label>
+                <input type="text" list="city-options" name="city" id="city-name-text-input">
+                <datalist id="city-options"></datalist>
             </div>
         </form>
-
-        <a href="{% url "hotel_list" %}">Remove filters</a>
     </div>
 
     <div class="separator" aria-hidden="true" role="presentation"></div>

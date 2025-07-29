@@ -8,10 +8,16 @@
 
   // Show the list of cities that match the user's query.
   const showCityOptions = (cityOptions) => {
-    cityOptions.map(city => {
-      // TODO
-      console.log(city);
+    const cityDataList = document.getElementById("city-options");
+
+    const cityOptionElements = cityOptions.map(city => {
+      const option = document.createElement("option");
+      option.value = city.name;
+      option.innerHTML = city.name;
+      return option;
     });
+
+    cityDataList.replaceChildren(...cityOptionElements);
   };
 
   // Get all cities whose names contain the given query and display them as
@@ -36,5 +42,4 @@
       const cityQuery = event.target.value;
       handleCityQuery(cityQuery);
     });
-
 })();
