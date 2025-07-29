@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{% static "hotelbrowser/base.css" %}">
+    <link rel="stylesheet" href="{% static "hotelbrowser/css/base.css" %}">
     {% block template_style %}{% endblock %}
 
     <title>{% block site-title %}Hotel Browser{% endblock %}</title>
@@ -18,13 +18,15 @@
         </h1>
 
         <nav id="navbar-nav">
-            <a href="/">home</a>
-            <a href="/admin">admin</a>
+            <a href="{% url "hotel_list" %}">home</a>
+            <a href="/admin/">admin</a>
         </nav>
     </div>
 
     <main id="content">
         {% block content %}{% endblock %}
     </main>
+
+    {% block scripts %}{% endblock %}
 </body>
 </html>

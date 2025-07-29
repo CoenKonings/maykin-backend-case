@@ -2,17 +2,27 @@
 {% load static %}
 
 {% block template_style %}
-<link rel="stylesheet" href="{% static "hotelbrowser/hotel_list.css" %}">
+<link rel="stylesheet" href="{% static "hotelbrowser/css/hotel_list.css" %}">
 {% endblock template_style %}
 
 {% block content %}
 <div id="hotel-browser">
     <div class="hotel-filter-section">
         <h2 class="sidebar-title">Filters</h2>
-        <form action="#" method="get" id="hotel-filter-form">
-            {{ city_form }}
-            <input type="submit" value="apply">
+        <noscript>
+        <form action="{% url "hotel_list" %}" method="get" id="hotel-filter-form">
+                {{ city_form }}
+                <input type="submit" value="apply">
+            </form>
+        </noscript>
+
+        <form action="{% url "hotel_list" %}" class="hotel-filter-form js-only">
+            <div>
+                <label for="city-name-text-input">City: <span class="small">(separate cities by commas)</span></label>
+                <input type="text" name="city" id="city-name-text-input">
+            </div>
         </form>
+
         <a href="{% url "hotel_list" %}">Remove filters</a>
     </div>
 
@@ -30,3 +40,7 @@
     </section>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+<script src="{% static "hotelbrowser/js/hotel_list.js" %}"></script>
+{% endblock scripts %}

@@ -36,3 +36,11 @@ body {
   max-width: 768px;
   margin: auto;
 }
+
+.js-only {
+  display: none;
+}
+
+.small {
+  font-size: 9px;
+}
