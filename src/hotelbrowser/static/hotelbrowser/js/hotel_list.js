@@ -6,6 +6,12 @@
     element => element.classList.toggle("js-only")
   );
 
+  // Show an HTTP error encountered while fetching data.
+  const showHttpError = (statusCode) => {
+    const errorMessage = "Something went wrong. Status code: " + statusCode;
+    document.getElementById("error").innerText = errorMessage;
+  };
+
   // Show the list of cities that match the user's query.
   const showCityOptions = (cityOptions) => {
     const cityDataList = document.getElementById("city-options");
@@ -20,9 +26,8 @@
     cityDataList.replaceChildren(...cityOptionElements);
   };
 
-  // Get all cities whose names contain the given query and display them as
-  // options.
-  const handleCityQuery = async (cityQuery) => {
+  // Get and display possible city names as the user types.
+  const handleCityKeyUp = async (cityQuery) => {
     const response = await fetch("/api/cities/?" + new URLSearchParams({
       name: cityQuery
     }).toString());
@@ -31,7 +36,7 @@
       const cities = await response.json();
       showCityOptions(cities);
     } else {
-      showError(response.status);
+      showHttpError(response.status);
     }
   };
 
@@ -40,6 +45,6 @@
   document.getElementById("city-name-text-input")
     .addEventListener("keyup", (event) => {
       const cityQuery = event.target.value;
-      handleCityQuery(cityQuery);
+      handleCityKeyUp(cityQuery);
     });
 })();
