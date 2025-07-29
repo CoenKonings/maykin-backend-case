@@ -1,17 +1,13 @@
 from rest_framework import serializers
 
-from .models import City, Hotel
+from .models import City
 
 
-class HotelSerializer(serializers.HyperlinkedModelSerializer):
-    city = serializers.SlugRelatedField(many=False, read_only=True, slug_field="name")
+class CitiesHotelsSerializer(serializers.HyperlinkedModelSerializer):
+    hotel_set = serializers.SlugRelatedField(
+        many=True, read_only=True, slug_field="name"
+    )
 
-    class Meta:
-        model = Hotel
-        fields = ["name", "city"]
-
-
-class CitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = City
-        fields = ["name", "abbreviation"]
+        fields = ["name", "hotel_set"]
