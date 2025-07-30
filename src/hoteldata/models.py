@@ -34,5 +34,11 @@ class Hotel(models.Model):
         ordering = ["city", "name"]
 
     def __str__(self):
-        hotel_identifier = self.city.abbreviation + self.code
-        return f"{self.name} in {self.city.name} ({hotel_identifier})"
+        return f"{self.name} in {self.city.name} ({self.get_identifier()})"
+
+    def get_identifier(self):
+        """
+        Get the hotel's identifier by combining the city's abbreviation with
+        the hotel's code.
+        """
+        return self.city.abbreviation + self.code

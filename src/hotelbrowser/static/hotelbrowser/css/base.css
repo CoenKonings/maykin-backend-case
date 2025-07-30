@@ -44,3 +44,8 @@ body {
 .italics {
   font-style: italic;
 }
+
+.separator-vertical {
+  background-color: lightgray;
+  width: 1px;
+}

@@ -30,13 +30,17 @@
         </form>
     </div>
 
-    <div class="separator" aria-hidden="true" role="presentation"></div>
+    <div class="separator-vertical" aria-hidden="true" role="presentation"></div>
 
     <section id="hotel-list">
         {% for hotel in hotel_list %}
         <article class="hotel-info">
             <h2 class="hotel-name">{{ hotel.name }}</h2>
-            <div class="hotel-location">In: {{ hotel.city.name }}</div>
+            <div class="hotel-details">
+                <div class="hotel-detail">In: {{ hotel.city.name }}</div>
+                <div class="separator-vertical" aria-hidden="true" role="presentation"></div>
+                <div class="hotel-detail">ID: {{ hotel.get_identifier }}</div>
+            </div>
         </article>
         {% empty %}
         <span class="italics">No hotels found</span>
