@@ -10,3 +10,7 @@ older versions might work as well) and install the requirements listed in
 To import hotel data, run `python manage.py updatehotels`
 from the `src` folder. To run the development server, run
 `python manage.py runserver` from the `src` folder.
+
+## Documentation
+Documentation can be found in the `docs` folder. Starting at the
+[overview](doces/overview.md) is strongly suggested.
