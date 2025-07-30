@@ -6,7 +6,7 @@
 .hotel-filter-section {
   width: 200px;
   display: flex;
-  padding: 5px 10px 5px 5px;
+  padding: 5px 10px 0 0;
   flex-direction: column;
   gap: 10px;
   height: max-content;
@@ -26,16 +26,16 @@
   margin: 0;
 }
 
-.separator {
-  background-color: lightgray;
-  width: 1px;
-}
-
 #hotel-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 5px 10px 5px 5px;
+}
+
+.hotel-details {
+  display: flex;
+  gap: 5px;
 }
 
 .hotel-name {
@@ -44,7 +44,7 @@
   padding: 0;
 }
 
-.hotel-location {
+.hotel-detail {
   font-size: 12px;
   font-style: italic;
   color: gray;

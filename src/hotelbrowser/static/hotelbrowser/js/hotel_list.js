@@ -12,22 +12,55 @@
     document.getElementById("error").innerText = errorMessage;
   };
 
+  // Create a new element with the given tag and classes.
+  const createElementWithClasses = (tag, classNames) => {
+    const element = document.createElement(tag);
+    classNames.forEach((className) => element.classList.add(className));
+    return element;
+  };
+
+  // Create an element that displays a detail about the hotel.
+  const createHotelDetailElement = (text) => {
+    const hotelDetailElement = createElementWithClasses("div", ["hotel-detail"]);
+    hotelDetailElement.appendChild(document.createTextNode(text));
+    return hotelDetailElement;
+  };
+
+  // Create a visual separator.
+  const createVerticalSeparatorElement = () => {
+    const separator = createElementWithClasses("div", ["separator-vertical"]);
+    separator.setAttribute("aria-hidden", "true");
+    separator.setAttribute("role", "presentation");
+  }
+
   // Show the hotels located in a city that matches the user's query.
   const showHotels = (citiesHotels) => {
     const hotelElements = citiesHotels.map(city => (
-      city.hotel_set.map(hotelName => {
-        const hotelElement = document.createElement("article");
-        hotelElement.classList.add("hotel-info");
+      city.hotel_set.map(hotel => {
+        const hotelElement = createElementWithClasses("article", ["hotel-info"]);
 
-        const hotelTitleElement = document.createElement("h2");
-        hotelTitleElement.classList.add("hotel-name");
-        hotelTitleElement.appendChild(document.createTextNode(hotelName))
+        // Add h2 element with the hotel's name.
+        const hotelTitleElement = createElementWithClasses("h2", ["hotel-name"]);
+        hotelTitleElement.appendChild(document.createTextNode(hotel.name))
         hotelElement.appendChild(hotelTitleElement);
 
-        const hotelLocationElement = document.createElement("div");
-        hotelLocationElement.classList.add("hotel-location");
-        hotelLocationElement.appendChild(document.createTextNode(city.name));
-        hotelElement.appendChild(hotelLocationElement);
+        // Add a div with the hotel's details (i.e. location and identifier).
+        const hotelDetailsElement = createElementWithClasses("div", ["hotel-details"]);
+        const hotelDetails = [
+          `In: ${city.name}`,
+          `ID: ${city.abbreviation + hotel.code}`,
+        ];
+
+        hotelDetails.forEach((detail, index) => {
+          const hotelDetailElement = createHotelDetailElement(detail);
+          hotelDetailsElement.appendChild(hotelDetailElement);
+
+          if (index !== 0) {
+            hotelDetailsElement.appendChild(createVerticalSeparatorElement());
+          }
+        });
+
+        hotelElement.appendChild(hotelDetailsElement);
 
         return hotelElement;
       })
@@ -80,7 +113,4 @@
       const cityQuery = event.target.value;
       getCitiesHotels(cityQuery);
     });
-
-  // Get city and hotel data when page loads.
-  getCitiesHotels("");
 })();
