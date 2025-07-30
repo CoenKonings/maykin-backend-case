@@ -1,28 +1,22 @@
-from django.views.generic import ListView
+from django_filters.views import FilterView
 
 from hoteldata.models import Hotel
 
-from .forms import CityForm
+from .filters import HotelFilter
 
 
-class HotelListView(ListView):
-    model = Hotel
+class HotelListView(FilterView):
+    """
+    A view that allows user to filter a list of hotels by city.
+    """
+
     template_name = "hotelbrowser/hotel_list.html"
+    context_object_name = "hotel_list"
+    filterset_class = HotelFilter
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        if self.request.GET:
-            context["city_form"] = CityForm(self.request.GET)
-        else:
-            context["city_form"] = CityForm()
-
-        return context
-
-    def get_queryset(self, **kwargs):
-        city_form = CityForm(self.request.GET)
-
-        if city_form.is_valid():
-            print(city_form.cleaned_data)
-            return Hotel.objects.filter(city__in=city_form.cleaned_data["city"]).all()
-        else:
-            return Hotel.objects.all()
+    def get_queryset(self):
+        """
+        Return a queryset of all hotels ordered alphabetically by city name and
+        hotel name.
+        """
+        return Hotel.objects.order_by("city__name", "name")

@@ -34,7 +34,15 @@
     )).flat();
 
     const hotelListElement = document.getElementById("hotel-list");
-    hotelListElement.replaceChildren(...hotelElements);
+
+    if (hotelElements.length !== 0) {
+      hotelListElement.replaceChildren(...hotelElements);
+    } else {
+      const listEmptyElement = document.createElement("span");
+      listEmptyElement.classList.add("italics");
+      listEmptyElement.appendChild(document.createTextNode("No hotels found"));
+      hotelListElement.replaceChildren(listEmptyElement);
+    }
   };
 
   // Show the list of cities that match the user's query.
