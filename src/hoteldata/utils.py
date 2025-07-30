@@ -49,12 +49,12 @@ def list_to_city(city_data, stdout=sys.stdout):
         if city.name != name:
             stdout.write(f"Updating city {city.name} to {name}")
             city.name = name
-            return city
+            city.save()
 
     except City.DoesNotExist:
         city = City(abbreviation=abbreviation, name=name)
         stdout.write(f"Adding new city: {city}")
-        return city
+        city.save()
 
 
 def list_to_hotel(hotel_data, stdout=sys.stdout):
@@ -88,11 +88,11 @@ def list_to_hotel(hotel_data, stdout=sys.stdout):
         if hotel.name != hotel_name:
             stdout.write(f"Updating hotel {hotel.name} to {hotel_name}")
             hotel.name = hotel_name
-            return hotel
+            hotel.save()
     except Hotel.DoesNotExist:
         hotel = Hotel(city=city, code=hotel_code, name=hotel_name)
         stdout.write(f"Adding new hotel: {hotel}")
-        return hotel
+        hotel.save()
 
 
 def import_csv_data(username, password, url, row_import_callback, stdout=sys.stdout):
@@ -113,10 +113,7 @@ def import_csv_data(username, password, url, row_import_callback, stdout=sys.std
     csv_reader = csv.reader(response_file, delimiter=";")
 
     for row in csv_reader:
-        obj = row_import_callback(row, stdout=stdout)
-
-        if obj:
-            obj.save()
+        row_import_callback(row, stdout=stdout)
 
 
 def import_hotels_cities(stdout=sys.stdout):
