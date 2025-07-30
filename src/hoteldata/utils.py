@@ -43,6 +43,13 @@ def list_to_city(city_data, stdout=sys.stdout):
     abbreviation = city_data[0]
     name = city_data[1]
 
+    if len(abbreviation) > 3:
+        stdout.write(
+            f"Found invalid abbreviation: {abbreviation}. (max length: 3 characters)"
+        )
+
+        return
+
     try:
         city = City.objects.get(abbreviation=abbreviation)
 
