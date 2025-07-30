@@ -5,7 +5,6 @@ from .models import City, Hotel
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
-    ordering = ("name",)
     list_display = ("__str__", "hotels")
 
     def hotels(self, obj):
@@ -15,6 +14,4 @@ class CityAdmin(admin.ModelAdmin):
         return obj.get_num_hotels()
 
 
-@admin.register(Hotel)
-class HotelAdmin(admin.ModelAdmin):
-    ordering = ("city__name", "name")
+admin.site.register(Hotel, admin.ModelAdmin)

@@ -8,6 +8,7 @@ class City(models.Model):
 
     class Meta:
         verbose_name_plural = "cities"
+        ordering = ["name"]
 
     def __str__(self):
         return f"{self.name} ({self.abbreviation})"
@@ -29,6 +30,8 @@ class Hotel(models.Model):
         constraints = [
             models.UniqueConstraint(fields=["city", "code"], name="hotel identifier"),
         ]
+
+        ordering = ["city", "name"]
 
     def __str__(self):
         hotel_identifier = self.city.abbreviation + self.code
