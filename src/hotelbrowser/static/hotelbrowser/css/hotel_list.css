@@ -19,10 +19,11 @@
   margin: 0;
 }
 
-#hotel-filter-form, #hotel-filter-form > div {
+#hotel-filter-form, #hotel-filter-form > p {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  margin: 0;
 }
 
 .separator {
