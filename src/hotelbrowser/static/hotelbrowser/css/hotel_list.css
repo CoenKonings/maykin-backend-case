@@ -1,0 +1,50 @@
+#hotel-browser {
+  display: flex;
+  gap: 10px;
+}
+
+.hotel-filter-section {
+  width: 200px;
+  display: flex;
+  padding: 5px 10px 5px 5px;
+  flex-direction: column;
+  gap: 10px;
+  height: max-content;
+  position: sticky;
+  top: 20px;
+}
+
+.sidebar-title {
+  font-size: 18px;
+  margin: 0;
+}
+
+#hotel-filter-form, #hotel-filter-form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.separator {
+  background-color: lightgray;
+  width: 1px;
+}
+
+#hotel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px 10px 5px 5px;
+}
+
+.hotel-name {
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.hotel-location {
+  font-size: 12px;
+  font-style: italic;
+  color: gray;
+}

@@ -1,0 +1,50 @@
+{% extends "hotelbrowser/base.html" %}
+{% load static %}
+
+{% block template_style %}
+<link rel="stylesheet" href="{% static "hotelbrowser/css/hotel_list.css" %}">
+{% endblock template_style %}
+
+{% block content %}
+<div id="error"></div>
+<div id="hotel-browser">
+    <div class="hotel-filter-section">
+        <h2 class="sidebar-title">Filters</h2>
+        <noscript>
+            <form action="{% url "hotel_list" %}" method="get" id="hotel-filter-form">
+                {{ city_form }}
+                <input type="submit" value="apply">
+            </form>
+
+            <a href="{% url "hotel_list" %}">Remove filters</a>
+        </noscript>
+
+        <form action="{% url "hotel_list" %}" class="hotel-filter-form js-only">
+            <div>
+                <label for="city-name-text-input">
+                    City:
+                </label>
+                <input type="text" list="city-options" name="city" id="city-name-text-input">
+                <datalist id="city-options"></datalist>
+            </div>
+        </form>
+    </div>
+
+    <div class="separator" aria-hidden="true" role="presentation"></div>
+
+    <section id="hotel-list">
+        {% for hotel in hotel_list %}
+        <article class="hotel-info">
+            <h2 class="hotel-name">{{ hotel.name }}</h2>
+            <div class="hotel-location">In: {{ hotel.city.name }}</div>
+        </article>
+        {% empty %}
+        <span class="italics">No hotels found</span>
+        {% endfor %}
+    </section>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static "hotelbrowser/js/hotel_list.js" %}"></script>
+{% endblock scripts %}
