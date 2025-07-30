@@ -6,8 +6,14 @@ class City(models.Model):
     # 3 letter identifier. Used to differentiate cities with the same name.
     abbreviation = models.CharField(max_length=3, unique=True)
 
+    class Meta:
+        verbose_name_plural = "cities"
+
     def __str__(self):
         return f"{self.name} ({self.abbreviation})"
+
+    def get_num_hotels(self):
+        return self.hotel_set.count()
 
 
 class Hotel(models.Model):
