@@ -40,3 +40,7 @@ body {
 .js-only {
   display: none;
 }
+
+.italics {
+  font-style: italic;
+}
