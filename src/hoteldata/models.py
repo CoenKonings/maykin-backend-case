@@ -22,9 +22,7 @@ class Hotel(models.Model):
     # Hotels without cities can be imported automatically, but not added
     # manually.
     city = models.ForeignKey(City, on_delete=models.PROTECT)
-    code = models.CharField(
-        db_comment="Combines with city abbreviation to create the hotel identifier."
-    )
+    code = models.CharField()
 
     class Meta:
         constraints = [
