@@ -13,4 +13,4 @@ from the `src` folder. To run the development server, run
 
 ## Documentation
 Documentation can be found in the `docs` folder. Starting at the
-[overview](doces/overview.md) is strongly suggested.
+[overview](docs/overview.md) is strongly suggested.
