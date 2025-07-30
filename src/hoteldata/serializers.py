@@ -5,7 +5,7 @@ from .models import City
 
 class CitiesHotelsSerializer(serializers.HyperlinkedModelSerializer):
     hotel_set = serializers.SlugRelatedField(
-        many=True, read_only=True, slug_field="name"
+        many=True, read_only=True, slug_field="name", allow_null=True
     )
 
     class Meta:
